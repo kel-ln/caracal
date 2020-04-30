@@ -153,7 +153,7 @@ module Caracal
           xml['w'].pPr do
             xml['w'].spacing({ 'w:lineRule' => 'auto', 'w:line' => 0 })
           end
-          xml['w'].r run_options do
+          xml['w'].r do
             xml['w'].rPr do
               xml['w'].noProof
             end            
