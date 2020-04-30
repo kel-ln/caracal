@@ -152,6 +152,7 @@ module Caracal
         xml['w'].p paragraph_options do
           xml['w'].pPr do
             xml['w'].spacing({ 'w:lineRule' => 'auto', 'w:line' => 0 })
+            xml['w'].contextualSpacing({ 'w:val' => "0" })
           end
           xml['w'].r do
             xml['w'].rPr do
