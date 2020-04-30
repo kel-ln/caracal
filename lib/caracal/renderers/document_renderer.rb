@@ -158,7 +158,6 @@ module Caracal
           end
           xml['w'].r run_options do
             xml['w'].drawing do
-              xml['wp'].inline({ distR: model.formatted_right, distT: model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left }) do
               xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "0", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "1" }) do
                 xml['wp'].simplePos({ x: "0", y: "0" })
                 xml['wp'].positionH({ relativeFrom: "column" }) do
