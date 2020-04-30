@@ -170,9 +170,10 @@ module Caracal
                 xml['wp'].effectExtent({ t: 0, b: 0, r: 0, l: 0 })
                 xml['wp'].wrapSquare({ wrapText: "bothSides" })
                 xml['wp'].docPr({ id: rel_id, name: rel_name })
-                xml['a'].graphic do
+                xml['wp'].cNvGraphicFramePr
+                xml['a'].graphic({ 'xmlns:a' => "http://schemas.openxmlformats.org/drawingml/2006/main" }) do
                   xml['a'].graphicData({ uri: 'http://schemas.openxmlformats.org/drawingml/2006/picture' }) do
-                    xml['pic'].pic do
+                    xml['pic'].pic({ 'xmlns:pic' => "http://schemas.openxmlformats.org/drawingml/2006/picture" }) do
                       xml['pic'].nvPicPr do
                         xml['pic'].cNvPr({ id: rel_id, name: rel_name })
                         xml['pic'].cNvPicPr
