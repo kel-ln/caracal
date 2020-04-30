@@ -152,8 +152,6 @@ module Caracal
         xml['w'].p paragraph_options do
           xml['w'].pPr do
             xml['w'].spacing({ 'w:lineRule' => 'auto', 'w:line' => 0 })
-            xml['w'].contextualSpacing({ 'w:val' => '0' })
-            xml['w'].jc({ 'w:val' => model.image_align.to_s })
           end
           xml['w'].r run_options do
             xml['w'].rPr do
