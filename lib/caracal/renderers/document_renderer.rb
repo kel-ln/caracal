@@ -161,10 +161,10 @@ module Caracal
               xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "0", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "0" }) do
                 xml['wp'].simplePos({ x: "0", y: "0" })
                 xml['wp'].positionH({ relativeFrom: "column" }) do
-                  xml['wp'].posOffset -251472
+                  xml['wp'].posOffset -9956
                 end
                 xml['wp'].positionV({ relativeFrom: "column" }) do
-                  xml['wp'].posOffset -2483179
+                  xml['wp'].posOffset -9669
                 end
                 xml['wp'].extent({ cx: model.formatted_width, cy: model.formatted_height })
                 xml['wp'].effectExtent({ t: 0, b: 0, r: 0, l: 0 })
