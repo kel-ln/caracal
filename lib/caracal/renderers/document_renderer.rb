@@ -153,6 +153,7 @@ module Caracal
           xml['w'].pPr do
             xml['w'].spacing({ 'w:lineRule' => 'auto', 'w:line' => 0 })
             xml['w'].contextualSpacing({ 'w:val' => "0" })
+            xml['w'].jc({ 'w:val' => "left" })
           end
           xml['w'].r do
             xml['w'].rPr do
