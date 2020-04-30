@@ -156,6 +156,9 @@ module Caracal
             xml['w'].jc({ 'w:val' => model.image_align.to_s })
           end
           xml['w'].r run_options do
+            xml['w'].rPr do
+              xml['w'].noProof
+            end            
             xml['w'].drawing do
               xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "0", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "0" }) do
                 xml['wp'].simplePos({ x: "0", y: "0" })
