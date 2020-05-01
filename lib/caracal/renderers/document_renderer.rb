@@ -158,7 +158,7 @@ module Caracal
           xml['w'].r do
             xml['w'].rPr do
               xml['w'].noProof
-            end            
+            end
             xml['w'].drawing do
               xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "0", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "0" }) do
                 xml['wp'].simplePos({ x: "0", y: "0" })
@@ -182,17 +182,18 @@ module Caracal
                       end
                       xml['pic'].blipFill do
                         xml['a'].blip({ 'r:embed' => rel.formatted_id })
-                        xml['a'].srcRect
                         xml['a'].stretch do
                           xml['a'].fillRect
                         end
                       end
                       xml['pic'].spPr do
                         xml['a'].xfrm do
+                          xml['a'].off({ x: "0", y: "0" })
                           xml['a'].ext({ cx: model.formatted_width, cy: model.formatted_height })
                         end
-                        xml['a'].prstGeom({ prst: 'rect' })
-                        xml['a'].ln
+                        xml['a'].prstGeom({ prst: 'rect' }) do
+                          xml['a'].avLst
+                        end
                       end
                     end
                   end
