@@ -165,7 +165,7 @@ module Caracal
                 xml['wp'].positionH({ relativeFrom: "column" }) do
                   xml['wp'].posOffset 0
                 end
-                xml['wp'].positionV({ relativeFrom: "column" }) do
+                xml['wp'].positionV({ relativeFrom: "paragraph" }) do
                   xml['wp'].posOffset 0
                 end
                 xml['wp'].extent({ cx: model.formatted_width, cy: model.formatted_height })
