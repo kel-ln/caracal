@@ -27,9 +27,11 @@ module Caracal
         attr_reader :paragraph_italic
         attr_reader :paragraph_underline
         attr_reader :paragraph_bgcolor
+        attr_reader :paragraph_no_spacing
 
         # initialization
         def initialize(options={}, &block)
+          @paragraph_no_spacing = false
           content = options.delete(:content) { "" }
           text content, options.dup, &block
           super options, &block
@@ -90,6 +92,12 @@ module Caracal
           end
         end
 
+        # spacing
+        [:no_spasing].each do |m|
+          define_method "#{ m }" do |value|
+            instance_variable_set("@paragraph_#{ m }", value.to_s.to_sym)
+          end
+        end
 
         #========== SUB-METHODS ===========================
 

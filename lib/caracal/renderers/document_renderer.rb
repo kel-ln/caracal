@@ -280,7 +280,7 @@ module Caracal
         xml['w'].p paragraph_options do
           xml['w'].pPr do
             xml['w'].pStyle({ 'w:val' => model.paragraph_style })  unless model.paragraph_style.nil?
-            xml['w'].spacing({ 'w:lineRule' => "auto" })
+            xml['w'].spacing({ 'w:line' => "240", 'w:lineRule' => "auto" }) if model.paragraph_no_spacing
             xml['w'].jc({ 'w:val' => model.paragraph_align })  unless model.paragraph_align.nil?
             render_run_attributes(xml, model, true)
           end
