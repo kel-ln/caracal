@@ -369,7 +369,7 @@ module Caracal
                       tc.send("cell_border_#{ m }_size") > 0
                     end
 
-                    if cell_borders.empty?
+                    unless cell_borders.empty?
                       xml['w'].tcBorders do
                         cell_borders.each do |m|
                           options = {
