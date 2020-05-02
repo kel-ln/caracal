@@ -184,7 +184,7 @@ module Caracal
         #borders
         [:border_top, :border_bottom, :border_left, :border_right, :border_horizontal, :border_vertical].each do |m|
           define_method "#{ m }" do |options = {}, &block|
-            options.merge!({ type: m.split("_").last })
+            options.merge!({ type: m.to_s.split("_").last })
             instance_variable_set("@cell_#{ m }", Caracal::Core::Models::BorderModel.new(options, &block))
           end
         end
