@@ -366,14 +366,14 @@ module Caracal
                     xml['w'].vAlign({ 'w:val' => tc.cell_vertical_align })
 
                     cell_borders = %w(top left bottom right horizontal vertical).select do |m|
-                      model.send("cell_border_#{ m }_size") > 0
+                      model.send("table_border_#{ m }_size") > 0
                     end
 
                     if cell_borders.empty?
                       xml['w'].tcBorders do
                         cell_borders.each do |m|
                           options = {
-                            'w:color' => model.send("cell_border_#{ m }_color"),
+                            'w:color' => model.send("table_border_#{ m }_color"),
                             'w:val'   => model.send("table_border_#{ m }_line"),
                             'w:sz'    => model.send("table_border_#{ m }_size"),
                             'w:space' => model.send("table_border_#{ m }_spacing")
