@@ -20,7 +20,6 @@ module Caracal
         const_set(:DEFAULT_CELL_BACKGROUND,       'ffffff')
         const_set(:DEFAULT_CELL_MARGINS,          Caracal::Core::Models::MarginModel.new({ top: 100, bottom: 100, left: 100, right: 100 }))
         const_set(:DEFAULT_CELL_VERTICAL_ALIGN,   :top)
-        const_set(:DEFAULT_CELL_BORDERS,          Caracal::Core::Models::BorderModel.new({ color: "auto", line: :single, size: 4, spacing: 1, type: :top }))
 
         # accessors
         attr_reader :cell_background
@@ -29,14 +28,18 @@ module Caracal
         attr_reader :cell_vertical_align
         attr_reader :cell_rowspan
         attr_reader :cell_colspan
-        attr_reader :cell_borders
+        attr_reader :cell_border_top         # returns border model
+        attr_reader :cell_border_bottom      # returns border model
+        attr_reader :cell_border_left        # returns border model
+        attr_reader :cell_border_right       # returns border model
+        attr_reader :cell_border_horizontal  # returns border model
+        attr_reader :cell_border_vertical    # returns border model
 
         # initialization
         def initialize(options={}, &block)
           @cell_background      = DEFAULT_CELL_BACKGROUND
           @cell_margins         = DEFAULT_CELL_MARGINS
           @cell_vertical_align  = DEFAULT_CELL_VERTICAL_ALIGN
-          @cell_borders         = DEFAULT_CELL_BORDERS
 
           if content = options.delete(:content)
             p content, options.dup, &block
@@ -127,8 +130,11 @@ module Caracal
 
         # border attrs
         [:top, :bottom, :left, :right, :horizontal, :vertical].each do |m|
-          define_method "cell_border_#{ m }" do
-            v = cell_borders ? cell_borders.send("border_#{ m }") : 0
+          [:color, :line, :size, :spacing].each do |attr|
+            define_method "cell_border_#{ m }_#{ attr }" do
+              model = send("cell_border_#{ m }")
+              value = (model) ? model.send("border_#{ attr }") : send("cell_border_#{ attr }")
+            end
           end
         end
 
@@ -163,8 +169,9 @@ module Caracal
         end
 
         #borders
-        [:borders].each do |m|
+        [:border_top, :border_bottom, :border_left, :border_right, :border_horizontal, :border_vertical].each do |m|
           define_method "#{ m }" do |options = {}, &block|
+            options.merge!({ type: m.split("_").last })
             instance_variable_set("@cell_#{ m }", Caracal::Core::Models::BorderModel.new(options, &block))
           end
         end
@@ -182,7 +189,8 @@ module Caracal
         private
 
         def option_keys
-          [:background, :margins, :width, :vertical_align, :rowspan, :colspan, :borders]
+          [:background, :margins, :width, :vertical_align, :rowspan, :colspan,
+           :border_bottom, :border_left, :border_right, :border_top, :border_horizontal, :border_vertical]
         end
 
       end
