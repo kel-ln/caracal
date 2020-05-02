@@ -73,6 +73,9 @@ module Caracal
           @table_data || [[]]
         end
 
+        def cell i, j
+          rows[i][j]
+        end
 
         #=============== STYLES ===============================
 
