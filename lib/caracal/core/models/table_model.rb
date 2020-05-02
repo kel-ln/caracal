@@ -73,10 +73,6 @@ module Caracal
           @table_data || [[]]
         end
 
-        def cell i, j
-          rows[i][j]
-        end
-
         #=============== STYLES ===============================
 
         # This method sets explicit widths on all wrapped cells
