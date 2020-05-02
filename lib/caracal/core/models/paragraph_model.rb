@@ -32,6 +32,7 @@ module Caracal
         # initialization
         def initialize(options={}, &block)
           @paragraph_no_spacing = false
+
           content = options.delete(:content) { "" }
           text content, options.dup, &block
           super options, &block
@@ -92,8 +93,8 @@ module Caracal
           end
         end
 
-        # spacing
-        [:no_spasing].each do |m|
+        # no_spacing
+        [:no_spacing].each do |m|
           define_method "#{ m }" do |value|
             instance_variable_set("@paragraph_#{ m }", value.to_s.to_sym)
           end
@@ -184,7 +185,7 @@ module Caracal
         private
 
         def option_keys
-          [:content, :style, :align, :color, :size, :bold, :italic, :underline, :bgcolor]
+          [:content, :style, :align, :color, :size, :bold, :italic, :underline, :bgcolor, :no_spacing]
         end
 
       end
