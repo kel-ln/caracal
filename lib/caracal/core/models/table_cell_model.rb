@@ -20,6 +20,7 @@ module Caracal
         const_set(:DEFAULT_CELL_BACKGROUND,       'ffffff')
         const_set(:DEFAULT_CELL_MARGINS,          Caracal::Core::Models::MarginModel.new({ top: 100, bottom: 100, left: 100, right: 100 }))
         const_set(:DEFAULT_CELL_VERTICAL_ALIGN,   :top)
+        const_set(:DEFAULT_CELL_BORDERS,          Caracal::Core::Models::BorderModel.new({ color: "auto", line: :single, size: 4, spacing: 1, type: :top }))
 
         # accessors
         attr_reader :cell_background
@@ -28,12 +29,14 @@ module Caracal
         attr_reader :cell_vertical_align
         attr_reader :cell_rowspan
         attr_reader :cell_colspan
+        attr_reader :cell_borders
 
         # initialization
         def initialize(options={}, &block)
           @cell_background      = DEFAULT_CELL_BACKGROUND
           @cell_margins         = DEFAULT_CELL_MARGINS
           @cell_vertical_align  = DEFAULT_CELL_VERTICAL_ALIGN
+          @cell_borders         = DEFAULT_CELL_BORDERS
 
           if content = options.delete(:content)
             p content, options.dup, &block
@@ -122,6 +125,12 @@ module Caracal
           end
         end
 
+        # border attrs
+        [:top, :bottom, :left, :right, :horizontal, :vertical].each do |m|
+          define_method "cell_border_#{ m }" do
+            v = cell_borders ? cell_borders.send("border_#{ m }") : 0
+          end
+        end
 
         #=============== SETTERS ==============================
 
@@ -153,6 +162,13 @@ module Caracal
           end
         end
 
+        #borders
+        [:borders].each do |m|
+          define_method "#{ m }" do |options = {}, &block|
+            instance_variable_set("@cell_#{ m }", Caracal::Core::Models::BorderModel.new(options, &block))
+          end
+        end
+
         #=============== VALIDATION ===========================
 
         def valid?
@@ -166,7 +182,7 @@ module Caracal
         private
 
         def option_keys
-          [:background, :margins, :width, :vertical_align, :rowspan, :colspan]
+          [:background, :margins, :width, :vertical_align, :rowspan, :colspan, :borders]
         end
 
       end

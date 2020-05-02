@@ -365,6 +365,24 @@ module Caracal
                     xml['w'].shd({ 'w:fill' => tc.cell_background })
                     xml['w'].vAlign({ 'w:val' => tc.cell_vertical_align })
 
+                    cell_borders = %w(top left bottom right horizontal vertical).select do |m|
+                      model.send("cell_border_#{ m }_size") > 0
+                    end
+
+                    if cell_borders.empty?
+                      xml['w'].tcBorders do
+                        cell_borders.each do |m|
+                          options = {
+                            'w:color' => model.send("cell_border_#{ m }_color"),
+                            'w:val'   => model.send("table_border_#{ m }_line"),
+                            'w:sz'    => model.send("table_border_#{ m }_size"),
+                            'w:space' => model.send("table_border_#{ m }_spacing")
+                          }
+                          xml['w'].method_missing "#{ Caracal::Core::Models::BorderModel.formatted_type(m) }", options
+                        end
+                      end
+                    end
+
                     # applying rowspan
                     if tc.cell_rowspan && tc.cell_rowspan > 0
                       rowspan_hash[tc_index] = tc.cell_rowspan - 1
