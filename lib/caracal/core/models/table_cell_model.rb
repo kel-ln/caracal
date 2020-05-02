@@ -20,6 +20,11 @@ module Caracal
         const_set(:DEFAULT_CELL_BACKGROUND,       'ffffff')
         const_set(:DEFAULT_CELL_MARGINS,          Caracal::Core::Models::MarginModel.new({ top: 100, bottom: 100, left: 100, right: 100 }))
         const_set(:DEFAULT_CELL_VERTICAL_ALIGN,   :top)
+        const_set(:DEFAULT_CELL_ALIGN,             :center)    # weirdly, works better w/ full width
+        const_set(:DEFAULT_CELL_BORDER_COLOR,      'auto')
+        const_set(:DEFAULT_CELL_BORDER_LINE,       :single)
+        const_set(:DEFAULT_CELL_BORDER_SIZE,       0)          # units in 1/8 points
+        const_set(:DEFAULT_CELL_BORDER_SPACING,    0)
 
         # accessors
         attr_reader :cell_background
@@ -28,6 +33,10 @@ module Caracal
         attr_reader :cell_vertical_align
         attr_reader :cell_rowspan
         attr_reader :cell_colspan
+        attr_reader :сell_border_color
+        attr_reader :cell_border_line
+        attr_reader :cell_border_size
+        attr_reader :cell_border_spacing
         attr_reader :cell_border_top         # returns border model
         attr_reader :cell_border_bottom      # returns border model
         attr_reader :cell_border_left        # returns border model
@@ -40,6 +49,10 @@ module Caracal
           @cell_background      = DEFAULT_CELL_BACKGROUND
           @cell_margins         = DEFAULT_CELL_MARGINS
           @cell_vertical_align  = DEFAULT_CELL_VERTICAL_ALIGN
+          @cell_border_color    = DEFAULT_CELL_BORDER_COLOR
+          @cell_border_line     = DEFAULT_CELL_BORDER_LINE
+          @cell_border_size     = DEFAULT_CELL_BORDER_SIZE
+          @cell_border_spacing  = DEFAULT_CELL_BORDER_SPACING
 
           if content = options.delete(:content)
             p content, options.dup, &block
