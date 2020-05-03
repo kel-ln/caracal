@@ -361,6 +361,9 @@ module Caracal
             xml['w'].tr do
               tc_index = 0
               row.each do |tc|
+                xml['w'].trPr do
+                  xml['w'].trHeight({ "w:hRule" => "exact" })
+                end
                 xml['w'].tc do
                   xml['w'].tcPr do
                     xml['w'].shd({ 'w:fill' => tc.cell_background })
