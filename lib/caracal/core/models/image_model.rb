@@ -36,8 +36,8 @@ module Caracal
         attr_reader :image_bottom
         attr_reader :image_left
         attr_reader :image_right
-        attr_reader :pos_x
-        attr_reader :pos_y
+        attr_reader :image_pos_x
+        attr_reader :image_pos_y
 
 
         # initialization
