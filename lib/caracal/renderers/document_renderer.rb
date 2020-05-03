@@ -160,7 +160,7 @@ module Caracal
               xml['w'].noProof
             end
             xml['w'].drawing do
-              xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "1", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "0" }) do
+              xml['wp'].anchor({ distR: model.formatted_right,distT:  model.formatted_top, distB: model.formatted_bottom, distL: model.formatted_left, simplePos: "1", relativeHeight: "0", behindDoc: "0", locked: "0", layoutInCell:"1", allowOverlap: "1" }) do
                 xml['wp'].simplePos({ x: model.formatted_pos_x, y: model.formatted_pos_y })
                 xml['wp'].extent({ cx: model.formatted_width, cy: model.formatted_height })
                 xml['wp'].effectExtent({ t: 0, b: 0, r: 0, l: 0 })
