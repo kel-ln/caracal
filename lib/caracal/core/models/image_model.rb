@@ -114,7 +114,7 @@ module Caracal
 
         [:pos_x, :pos_y].each do |m|
           define_method "#{ m }" do |value|
-            instance_variable_set("@image_#{ m }", value.to_s.to_sym)
+            instance_variable_set("@image_#{ m }", value.to_i)
           end
         end
 
