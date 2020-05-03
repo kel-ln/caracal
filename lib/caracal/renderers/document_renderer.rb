@@ -170,7 +170,8 @@ module Caracal
                 end
                 xml['wp'].extent({ cx: model.formatted_width, cy: model.formatted_height })
                 xml['wp'].effectExtent({ t: 0, b: 0, r: 0, l: 0 })
-                xml['wp'].wrapSquare({ wrapText: "bothSides" })
+                # xml['wp'].wrapSquare({ wrapText: "bothSides" })
+                xml['wp'].wrapNone
                 xml['wp'].docPr({ id: rel_id, name: rel_name })
                 xml['wp'].cNvGraphicFramePr
                 xml['a'].graphic({ 'xmlns:a' => "http://schemas.openxmlformats.org/drawingml/2006/main" }) do
